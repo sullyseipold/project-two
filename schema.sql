@@ -1,2 +1,0 @@
-DROP DATABASE IF EXISTS local_run;
-CREATE DATABASE local_run;
