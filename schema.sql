@@ -15,23 +15,22 @@ CREATE TABLE user
 CREATE TABLE item 
 (
     id int NOT NULL AUTO_INCREMENT,
-    userid int NOT NULL,
+    owner_id int NOT NULL,
     item_name varchar(200) NOT NULL,
     price decimal(5,2),
     description varchar(500) NOT NULL,
     image_url TEXT,
     PRIMARY KEY (id),
-    FOREIGN KEY (id) REFERENCES user(id)
+    FOREIGN KEY (owner_id) REFERENCES user(id)
 );
 
 CREATE TABLE rental 
 (
     id int NOT NULL AUTO_INCREMENT,
     itemid int NOT NULL,
-    userid int NOT NULL,
+    renterid int NOT NULL,
     start_date DATE,
     end_date DATE,
     PRIMARY KEY (id),
     FOREIGN KEY (itemid) REFERENCES item(id),
-    FOREIGN KEY (userid) REFERENCES user(id)
 );
