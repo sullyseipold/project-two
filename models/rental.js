@@ -1,14 +1,20 @@
 module.exports = function (sequelize, DataTypes) {
-    var Rental = sequelize.define("Rentals", {
+    var Rental = sequelize.define("Rental", {
         // Giving the Author model a name of type STRING
         id: {
-            type: Sequelize.INTEGER,
+            type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
             allowNull: false
         },
-        start_date: DataTypes.DATE,
-        end_date: DataTypes.DATE,
+        start_date: {
+            type: DataTypes.DATE,
+            allowNull: false
+        },
+        end_date: {
+            type: DataTypes.DATE,
+            allowNull: false
+        }
     });
 
     Rental.associate = function (models) {
@@ -18,7 +24,6 @@ module.exports = function (sequelize, DataTypes) {
             foreignKey: {
                 allowNull: false
             },
-            as: 'owner_id'
         });
         Rental.belongsTo(models.Item, {
             foreignKey: {
@@ -27,5 +32,5 @@ module.exports = function (sequelize, DataTypes) {
         });
     };
 
-    return Rentals;
+    return Rental;
 };
