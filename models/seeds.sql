@@ -1,18 +1,16 @@
 USE naybo_db;
 
+INSERT INTO Users (name,user_name,password,email,location,createdAt,updatedAt) 
+VALUES ('Miranda','mirwoz','password','miranda.wozmak@gmail.com','Portsmouth,NH',NOW(),NOW());
 
 
-INSERT INTO users (name,user_name,password,email,location) 
-VALUES ('Miranda','mirwoz','password','miranda.wozmak@gmail.com','Portsmouth,NH');
+INSERT INTO Users (name,user_name,password,email,location,createdAt,updatedAt) 
+VALUES ('Jenn','JennG','password','Jen@gmail.com','Manchester,NH',NOW(),NOW());
 
 
-INSERT INTO users (name,user_name,password,email,location) 
-VALUES ('Jenn','JennG','password','Jen@gmail.com','Manchester,NH');
+INSERT INTO Items (item_name,price,description,image_url,createdAt,updatedAt,UserId) 
+VALUES ('Lamp',5.00,'a really great lamp','www.google.com',NOW(),NOW(),1);
 
 
-INSERT INTO items (owner_id,item_name,price,description,image_url) 
-VALUES (1,'Lamp',5.00,'a very beautiful lamp','www.google.com');
-
-
-INSERT INTO rentals (item_id,renter_id,start_date,end_date) 
-VALUES (1,1,20190331,20190402);
+INSERT INTO Rentals (start_date,end_date,createdAt,updatedAt,ItemId,UserId) 
+VALUES (20190331,20190402,NOW(),NOW(),1,1);
