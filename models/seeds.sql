@@ -1,3 +1,5 @@
+USE naybo_db;
+
 INSERT INTO Users (name,user_name,password,email,location,createdAt,updatedAt) 
 VALUES ('Miranda','mirwoz','password','miranda.wozmak@gmail.com','Portsmouth,NH',NOW(),NOW());
 
