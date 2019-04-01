@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<title>Search Page</title>
+</head>
+
+<body>
+
+    <h1> {{title}} </h1>
+
+    {{!-- Search bar --}}
+
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+
+
+    {{!-- List of most recently posted items --}}
+
+    <div id="items">
+        <h1>Most recent item list:</h1>
+    </div>
+  
+            {{!-- unsure what goes in here for scripts --}}
+  
+
+<p> Top items for {{Search Term}}</p>
+
+<ul>
+    {{#each this}}
+        <li> {{name}}</li>
+    {{/each}}
+</ul>
+
+  <script> src= "script.js"</script>
+
+
+</body>
