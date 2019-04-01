@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 var db = require("../models");
 
 module.exports = function(app) {
@@ -17,8 +18,70 @@ module.exports = function(app) {
 
   // Delete an example by id
   app.delete("/api/examples/:id", function(req, res) {
+    // eslint-disable-next-line prettier/prettier
     db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
       res.json(dbExample);
+    });
+  });
+
+  /*==============================================================================
+                  USER ROUTES
+  ==============================================================================*/
+
+  //GET ALL USERS
+  app.get("/api/user/all", function(req, res) {
+    console.log("GET /api/user/");
+
+    db.User.findAll({}).then(function(dbUser) {
+      res.json(dbUser);
+    });
+  });
+
+  //GET USER BY QUERY STRINGS username and password
+  app.get("/api/user", function(req, res) {
+    var query = req.query;
+    console.log("query = ", query);
+
+    db.User.findOne({
+      where: {
+        user_name: query.user_name,
+        password: query.password
+      }
+    }).then(function(dbUser) {
+      res.json(dbUser);
+    });
+  });
+
+  // GET USER BY USER ID
+  app.get("/api/user/:id", function(req, res) {
+    console.log("req.params.id = ", req.params.id);
+
+    db.User.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbUser) {
+      res.json(dbUser);
+    });
+  });
+
+  // GET USER BY USER USERNAME
+  app.get("/api/user/user_name/:user_name", function(req, res) {
+    console.log("req.params.username = ", req.params.user_name);
+
+    db.User.findOne({
+      where: {
+        user_name: req.params.user_name
+      }
+    }).then(function(dbUser) {
+      res.json(dbUser);
+    });
+  });
+
+  // CREATE NEW USER
+  app.post("/api/user", function(req, res) {
+    db.User.create(req.body).then(function(dbUser) {
+      res.json(dbUser);
     });
   });
 };
