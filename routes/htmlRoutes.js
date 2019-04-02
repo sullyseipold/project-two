@@ -11,6 +11,33 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/", function(req, res) {
+    db.Example.findAll({}).then(function(dbExamples) {
+      res.render("accountPage", {
+        msg: "Welcome!",
+        examples: dbExamples
+      });
+    });
+  });
+
+  app.get("/", function(req, res) {
+    db.Example.findAll({}).then(function(dbExamples) {
+      res.render("itemPage", {
+        msg: "Welcome!",
+        examples: dbExamples
+      });
+    });
+  });
+
+  app.get("/", function(req, res) {
+    db.Example.findAll({}).then(function(dbExamples) {
+      res.render("searchPage", {
+        msg: "Welcome!",
+        examples: dbExamples
+      });
+    });
+  });
+
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {
     // eslint-disable-next-line prettier/prettier
