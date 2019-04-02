@@ -84,4 +84,24 @@ module.exports = function(app) {
       res.json(dbUser);
     });
   });
+
+
+  /*==============================================================================
+                    ITEM ROUTES
+    ==============================================================================*/
+
+  // CREATE NEW ITEM
+  app.post("/api/items", function (req, res) {
+    console.log(req.body);
+    db.Item.create({
+      item_name: req.body.item_name,
+      price: req.body.price,
+      description: req.body.description,
+      image_url: req.body.image_url,
+      UserId: req.body.userId
+    }).then(function (dbItems) {
+      res.json(dbItems);
+    });
+  });
+
 };

@@ -21,6 +21,12 @@ module.exports = function(app) {
     });
   });
 
+
+  // RENDER ADD ITEM PAGE
+  app.get("/add", function (req, res) {
+    res.render("additem");
+  });
+
   //GET ALL ITEMS 
   app.get("/items", function(req, res) {
     db.Item.findAll({}).then(function(dbItems) {
