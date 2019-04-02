@@ -11,8 +11,9 @@ module.exports = function(app) {
     });
   });
 
+ 
   app.get("/", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
+    db.Example.findAll({}).then(function() {
       res.render("accountPage", {
         msg: "Welcome!",
         examples: dbExamples
@@ -20,14 +21,16 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
+ 
+  app.get("/item/:id", function(req, res) {
+    db.Example.findAll({}).then(function() {
       res.render("itemPage", {
         msg: "Welcome!",
         examples: dbExamples
       });
     });
   });
+
 
   app.get("/", function(req, res) {
     db.Example.findAll({}).then(function(dbExamples) {
