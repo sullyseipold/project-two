@@ -1,6 +1,5 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var User = sequelize.define("User", {
-    // Giving the Author model a name of type STRING
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -21,15 +20,22 @@ module.exports = function(sequelize, DataTypes) {
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        isEmail: true
+      }
     },
-    location: {
+    city: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    state: {
+      type: DataTypes.STRING,
+      allowNull: false,
     }
   });
 
-  User.associate = function(models) {
+  User.associate = function (models) {
     // Associating User with Items
     // When a User is deleted, also delete any associated Items
     User.hasMany(models.Item, {
