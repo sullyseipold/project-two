@@ -1,25 +1,31 @@
 /* eslint-disable camelcase */
 var db = require("../models");
 
-module.exports = function(app) {
+
+
+module.exports = function (app) {
   // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
+  app.get("/api/examples", function (req, res) {
+    db.Example.findAll({}).then(function (dbExamples) {
       res.json(dbExamples);
     });
   });
 
   // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
+  app.post("/api/examples", function (req, res) {
+    db.Example.create(req.body).then(function (dbExample) {
       res.json(dbExample);
     });
   });
 
   // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
+  app.delete("/api/examples/:id", function (req, res) {
     // eslint-disable-next-line prettier/prettier
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
+    db.Example.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function (dbExample) {
       res.json(dbExample);
     });
   });
@@ -29,16 +35,16 @@ module.exports = function(app) {
   ==============================================================================*/
 
   //GET ALL USERS
-  app.get("/api/user/all", function(req, res) {
+  app.get("/api/user/all", function (req, res) {
     console.log("GET /api/user/");
 
-    db.User.findAll({}).then(function(dbUser) {
+    db.User.findAll({}).then(function (dbUser) {
       res.json(dbUser);
     });
   });
 
   //GET USER BY QUERY STRINGS username and password
-  app.get("/api/user", function(req, res) {
+  app.get("/api/user", function (req, res) {
     var query = req.query;
     console.log("query = ", query);
 
@@ -47,40 +53,40 @@ module.exports = function(app) {
         user_name: query.user_name,
         password: query.password
       }
-    }).then(function(dbUser) {
+    }).then(function (dbUser) {
       res.json(dbUser);
     });
   });
 
   // GET USER BY USER ID
-  app.get("/api/user/:id", function(req, res) {
+  app.get("/api/user/:id", function (req, res) {
     console.log("req.params.id = ", req.params.id);
 
     db.User.findOne({
       where: {
         id: req.params.id
       }
-    }).then(function(dbUser) {
+    }).then(function (dbUser) {
       res.json(dbUser);
     });
   });
 
   // GET USER BY USER USERNAME
-  app.get("/api/user/user_name/:user_name", function(req, res) {
+  app.get("/api/user/user_name/:user_name", function (req, res) {
     console.log("req.params.username = ", req.params.user_name);
 
     db.User.findOne({
       where: {
         user_name: req.params.user_name
       }
-    }).then(function(dbUser) {
+    }).then(function (dbUser) {
       res.json(dbUser);
     });
   });
 
   // CREATE NEW USER
-  app.post("/api/user", function(req, res) {
-    db.User.create(req.body).then(function(dbUser) {
+  app.post("/api/user", function (req, res) {
+    db.User.create(req.body).then(function (dbUser) {
       res.json(dbUser);
     });
   });
@@ -102,6 +108,22 @@ module.exports = function(app) {
     }).then(function (dbItems) {
       res.json(dbItems);
     });
+
+    //GET ITEM BY NAME
+    app.get("/api/item/:item", function (req, res) {
+      db.Item.findAll({
+        where: {
+          item_name: {
+            like: `%${req.params.item}%`
+          }
+        }
+      }).then(function (searchResults) {
+        console.log(searchResults)
+        res.json(searchResults);
+      });
+
+    });
+
   });
 
 };
