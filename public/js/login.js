@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  console.log("hi there!")
 
   // This file includes code to LOGIN and CREATE NEW USERS by taking input from the html file
   var $username = $("#username");
@@ -6,18 +7,23 @@ $(document).ready(function () {
 
   // METHODS FOR REQUESTS
   var API = {
+    saveUser: function (user) {
+      return $.ajax({
+        headers: {
+          "Content-Type": "application/json"
+        },
+        type: "POST",
+        url: "api/users",
+        data: JSON.stringify(user)
+      });
+    },
     getUser: function (username, ) {
       return $.ajax({
         url: `/user?user_name=${username}&password=${password}`,
         type: "GET"
       });
     },
-    saveUser: function () {
-      return $.ajax({
-        url: "/api/users",
-        type: "POST"
-      });
-    }
+
   };
 
   // LOGIN FUNCTION
@@ -34,27 +40,54 @@ $(document).ready(function () {
     });
   };
 
+
+
+  //--------------------------------------
+  // ADDING USERS
+  //----------------------------------------
+
   // ADD USER FUNCTION
   function newUser() {
-    if ($(".form-control").val() == "") {
+    if ($(".user-form").val() == "") {
       // validation - if form is blank display message (change alert to modal later)
       alert("Please fill in form");
     } else {
       var newUser = {
         name: $("#new-name").val().trim(),
-        username: $("#new-username").val().trim(),
+        user_name: $("#new-username").val().trim(),
         email: $("#new-email").val().trim(),
         password: $("#new-password").val().trim(),
-        location: $("#new-city").val().trim()
+        city: $("#new-city").val().trim(),
+        state: $("#new-state").val()
       };
       console.log(newUser);
-      API.saveUser(newUser).then(function () {
+      API.saveUser(newUser).then(function (data) {
         console.log("new user added");
+        console.log(data);
       });
     };
   }
 
   // BUTTON LISTENERS
-  $("submit-btn").on("click", userLogin);
-  $("new-user-btn").on("click", newUser);
+  // show modal
+  $("#new-user-btn").on("click", function (e) {
+    e.preventDefault();
+    // showModal();
+    $('#new-user-modal').modal('show');
+  });
+
+  // login with username and password
+  $("#submit-btn").on("click", function (e) {
+    e.preventDefault();
+    userLogin();
+  });
+
+  // create a new user 
+  $("#create-user-btn").on("click", function (e) {
+    e.preventDefault();
+    newUser();
+    $("#new-user-modal").modal("hide");
+  });
+
+
 })

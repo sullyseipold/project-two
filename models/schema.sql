@@ -12,7 +12,8 @@ CREATE TABLE `Users` (
   `user_name` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `location` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  'state' NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`)
