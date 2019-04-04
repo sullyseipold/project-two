@@ -85,7 +85,7 @@ module.exports = function (app) {
   });
 
   // CREATE NEW USER
-  app.post("/api/user", function (req, res) {
+  app.post("/api/users", function (req, res) {
     db.User.create(req.body).then(function (dbUser) {
       res.json(dbUser);
     });
@@ -109,6 +109,8 @@ module.exports = function (app) {
       res.json(dbItems);
     });
 
+  });
+
     //GET ITEM BY NAME
     app.get("/api/item/:item", function (req, res) {
       db.Item.findAll({
@@ -124,6 +126,6 @@ module.exports = function (app) {
 
     });
 
-  });
+
 
 };
