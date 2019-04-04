@@ -27,11 +27,11 @@ module.exports = function(sequelize, DataTypes) {
     city: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    state: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
-    // state: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false
-    // }
   });
 
   // User.associate = function(models) {

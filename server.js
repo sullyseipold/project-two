@@ -1,5 +1,6 @@
 require("dotenv").config();
 var express = require("express");
+// var methodOverride = require('method-override');
 var exphbs = require("express-handlebars");
 var aws = require("aws-sdk");
 
@@ -15,13 +16,12 @@ aws.config.update({
 });
 
 // Middleware
-app.use(
-  express.urlencoded({
-    extended: false
-  })
-);
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
+
+// Override with POST having ?_method=PUT
+// app.use(methodOverride('_method'));
 
 // Handlebars
 app.engine(
