@@ -1,52 +1,57 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+      <img src="/assets/photos/logo_transparent.png" width="30" height="30" class="d-inline-block align-top" alt="">
+      Neybo
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a id="search" class="nav-link btn">Available Items</a>
+        </li>
+        <li class="nav-item">
+          <a id="account" class="nav-link btn" href="#">My Account</a>
+        </li>
+        <li class="nav-item">
+          <a id="additem" class="nav-link btn">Add an Item</a>
+        </li>
+        {{!-- <li class="nav-item">
+          <a class="nav-link">Log Out</a>
+        </li> --}}
+      </ul>
+    </div>
+  </nav>
+</header>
 <div id="home">
   <div class="container">
-    <form action="/items" method="POST">
-
-        <div class="form-group">
-          <label for="item-name">Item name</label>
-          <input name="name" type="text" id="item-name" class="form-control" aria-describedby="example-text" placeholder="name">
-        </div>
-        {{!-- <div class="form-group">
-          <label for="item-description">Description</label>
-          <input name="description" class="form-control" id="item-description" aria-describedby="example-description"
-            placeholder="Enter item Description"></input>
-        </div> --}}
-        <div class="form-group">
-          <label for="item-price">Price</label>
-          <input name="price" type="text" id="item-price" class="form-control" aria-describedby="example-price" placeholder="price">
-        </div>
-        {{!-- <div class="form-group">
-          <label for="image-url">Item photo URL</label>
-          <input name="imageurl" type="text" id="image-url" class="form-control" aria-describedby="example-image-url" placeholder="url">
-        </div> --}}
-        {{!-- <div class="form-group">
-          <input name="availability" type="checkbox" class="form-control" value="false">
-        </div> --}}
-        <button id="new-item-btn" class="btn btn-success float-right">Submit</button>
-        </form>
     <div class="row">
       <div class="col-8 offset-2">
         <h1>Naybo!</h1>
         <h4>Need a Neighbor?</h4>
 
-        {{#each items}}
+        {{!-- {{#each items}}
 
         {{this.name}}
 
-        {{/each}}
+        {{/each}} --}}
 
-        {{!-- <form class="clearfix mb-4" action="POST"> --}}
-        <div class="form-group">
-          <label for="example-text">Username</label>
-          <input type="text" id="username" class="form-control" aria-describedby="username" placeholder="username">
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" class="form-control" aria-describedby="password" placeholder="password">
-        </div>
-        <button id="submit-btn" class="btn btn-success">Submit</button>
-        <button id="new-user-btn" class="btn btn-success">Create New User</button>
-        {{!-- </form> --}}
+        <form class="clearfix mb-4" action="POST">
+          <div class="form-group">
+            <label for="example-text">Username</label>
+            <input type="text" id="username" class="form-control" aria-describedby="username" placeholder="username">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" class="form-control" aria-describedby="password"
+              placeholder="password">
+          </div>
+          <button id="submit-btn" class="btn btn-success">Submit</button>
+          <button id="new-user-btn" class="btn btn-success">Create New User</button>
+        </form>
 
         <!-- modal -->
         <div class="modal" id="new-user-modal" tabindex="-1" role="dialog">
@@ -62,6 +67,7 @@
               {{!-- Create Account - New User --}}
               <div class="modal-body">
 
+                  {{!-- Need parameter logic --}}
                 <form action="/users" method="POST">
 
                   <div class="form-group">

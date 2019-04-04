@@ -1,7 +1,23 @@
-$(document).ready(function () {
-  // console.log("hi there!")
+$(document).ready(function() {
+  console.log("hi there!");
 
-  // // This file includes code to LOGIN and CREATE NEW USERS by taking input from the html file
+  $(".nav-link").on("click", function(req){
+    linkName = $(this).attr("id");
+    console.log(linkName);
+    // return $.ajax({
+    //   url: linkName,
+    //   type: "GET",
+    //   success: function(){
+        // if (data.redirect) {
+          window.location.href = linkName;
+        // }
+      // };
+    });
+  });
+// });
+
+
+  // This file includes code to LOGIN and CREATE NEW USERS by taking input from the html file
   // var $username = $("#username");
   // var $password = $("#password");
 
@@ -19,7 +35,7 @@ $(document).ready(function () {
   //   },
   //   getUser: function (username, password) {
   //     return $.ajax({
-  //       url: `/user?user_name=${username}&password=${password}`,
+  //       url: `/user?username=${username}&password=${password}`,
   //       type: "GET"
   //     });
   //   },
@@ -70,22 +86,22 @@ $(document).ready(function () {
 
   // BUTTON LISTENERS
   // show modal
-  $("#new-user-btn").on("click", function (e) {
-    e.preventDefault();
-    // showModal();
-    $('#new-user-modal').modal('show');
-  });
+//   $("#new-user-btn").on("click", function (e) {
+//     e.preventDefault();
+//     // showModal();
+//     $('#new-user-modal').modal('show');
+//   });
 
-  // login with username and password
-  $("#submit-btn").on("click", function (e) {
-    e.preventDefault();
-    // userLogin();
-  });
+//   // login with username and password
+//   $("#submit-btn").on("click", function (e) {
+//     e.preventDefault();
+//     // userLogin();
+//   });
 
-  // create a new user 
-  // $("#create-user-btn").on("click", function (e) {
-  //   e.preventDefault();
-  //   // newUser();
-  //   $("#new-user-modal").modal("hide");
-  // });
-});
+//   // create a new user 
+//   // $("#create-user-btn").on("click", function (e) {
+//   //   e.preventDefault();
+//   //   // newUser();
+//   //   $("#new-user-modal").modal("hide");
+//   // });
+// });

@@ -5,10 +5,18 @@
             <div class="col-8 offset-2">
 
                 <h2>Rent an Item</h2>
-                <form class="clearfix mb-4" action="POST">
+
+
+<form action="/item/{{this.name}}?_method=PUT" method="POST">
+
+  <input type="text" name="name">
+  <button type="submit"></button>
+
+</form>
+                <form action="/"class="clearfix mb-4" action="POST">
                     <div class="form-group">
                         <label for="example-text">Search</label>
-                        <input type="text" id="search-text" class="form-control" aria-describedby="search-text"
+                        <input name="search" type="text" id="search-text" class="form-control" aria-describedby="search-text"
                             placeholder="What are you looking to rent?">
 
                         <br>
@@ -17,26 +25,30 @@
                 </form>
                 <br>
                 <br>
-                <h3>Searches:</h3>
-                {{!-- <ul id="search-list" class="list-group"> --}}
+
+                {{!-- <h3>Searches:</h3> --}}
+                <h3>All Available Items:</h3>
+
+                <ul id="search-list" class="list-group">
                     {{#each items}}
-                    {{!-- {{#if this.available}} --}}
+                    {{!-- only display if true --}}
+                    {{#if this.availablity}}
 
                     <p>{{this.name}}</p>
 
                     {{!-- navigate to any of these items --}}
-                    <form action="/items/{{this.id}}" method="GET">
-                    <button type="submit">Submit</button>
+                    <form action="/item/{{this.id}}" method="GET">
+                    <button type="submit">View Item</button>
                     </form>
 
-                    {{!-- {{/if}} --}}
+                    {{/if}}
                     {{/each}}
 
-                {{!-- </ul> --}}
+                </ul>
             </div>
         </div>
     </div>
 </div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+{{!-- <script src="/js/index.js"></script> --}}

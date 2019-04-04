@@ -12,14 +12,14 @@ module.exports = function(sequelize, DataTypes) {
     price: {
       type: DataTypes.DECIMAL,
       allowNull: false
+    },
+    description: DataTypes.STRING,
+    imageurl: DataTypes.STRING,
+    availablity: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
     }
-    // description: DataTypes.STRING,
-    // imageurl: DataTypes.STRING,
-    // availablity: {
-    //   type: DataTypes.BOOLEAN,
-    //   allowNull: false,
-    //   defaultValue: true
-    // }
   });
   // Item.associate = function(models) {
   //   // We're saying that a Item should belong to a User
