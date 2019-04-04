@@ -31,12 +31,24 @@ module.exports = function (app) {
     res.render("additem");
   });
 
+  // RENDER USER ACCOUNT PAGE
+  app.get("/account", function (req, res) {
+    res.render("account");
+    });
+
   //GET ALL ITEMS 
   app.get("/items", function (req, res) {
-    db.Item.findAll({}).then(function (dbItems) {
+    db.Item.findAll({}).then(function () {
       res.json(dbItems);
     });
+
+    // RENDER USER ACCOUNT PAGE
+    app.get("/account", function(req, res) {
+      res.render("account");
+    });
   });
+
+
 
   // Render 404 page for any unmatched routes
   app.get("*", function (req, res) {
