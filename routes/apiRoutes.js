@@ -108,24 +108,20 @@ module.exports = function (app) {
     }).then(function (dbItems) {
       res.json(dbItems);
     });
-
   });
 
-    //GET ITEM BY NAME
-    app.get("/api/item/:item", function (req, res) {
-      db.Item.findAll({
-        where: {
-          item_name: {
-            like: `%${req.params.item}%`
-          }
+  //GET ITEM BY NAME
+  app.get("/api/search/:item", function (req, res) {
+    console.log("apiroute");
+    db.Item.findAll({
+      where: {
+        item_name: {
+          like: `%${req.params.item}%`
         }
-      }).then(function (searchResults) {
-        console.log(searchResults)
-        res.json(searchResults);
-      });
-
+      }
+    }).then(function (searchResults) {
+      console.log(searchResults)
+      res.json(searchResults);
     });
-
-
-
+  });
 };

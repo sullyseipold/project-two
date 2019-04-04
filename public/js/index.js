@@ -1,5 +1,5 @@
 // Get references to page elements
-var $exampleText = $("#example-text");
+var $searchText = $("#search-text");
 var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
 var $allItems = $("#allItems");
@@ -34,7 +34,7 @@ var API = {
   searchItem: function (searchTerm) {
     return $.ajax({
       type: "GET",
-      url: `api/item/${searchTerm}`
+      url: `api/search/${searchTerm}`
     });
   },
   //return all items in database
@@ -50,6 +50,7 @@ var API = {
 
 // refreshExamples gets new examples from the db and repopulates the list
 var refreshExamples = function (searchResults) {
+  console.log(searchResults);
   var searchLinks = searchResults.map(function (searchResult) {
     var $a = $("<a>")
       .text(searchResult.item_name)
@@ -90,7 +91,7 @@ var storage = function () {
 var handleFormSubmit = function (event) {
   event.preventDefault();
 
-  var searchTerm = $exampleText.val().trim();
+  var searchTerm = $searchText.val().trim();
 
   if (!(searchTerm)) {
     alert("You must enter item!");
@@ -101,7 +102,7 @@ var handleFormSubmit = function (event) {
     refreshExamples(searchResults);
   });
 
-  $exampleText.val("");
+  $searchText.val("");
 
 };
 
