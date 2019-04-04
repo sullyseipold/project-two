@@ -1,11 +1,7 @@
 <div id="home">
     <div class="container">
         <div class="row">
-            {{#each items}}
 
-            <p>{{this.name}}</p>
-
-            {{/each}}
             <div class="col-8 offset-2">
 
                 <h2>Rent an Item</h2>
@@ -22,9 +18,21 @@
                 <br>
                 <br>
                 <h3>Searches:</h3>
-                <ul id="search-list" class="list-group">
+                {{!-- <ul id="search-list" class="list-group"> --}}
+                    {{#each items}}
+                    {{!-- {{#if this.available}} --}}
 
-                </ul>
+                    <p>{{this.name}}</p>
+
+                    {{!-- navigate to any of these items --}}
+                    <form action="/items/{{this.id}}" method="GET">
+                    <button type="submit">Submit</button>
+                    </form>
+
+                    {{!-- {{/if}} --}}
+                    {{/each}}
+
+                {{!-- </ul> --}}
             </div>
         </div>
     </div>

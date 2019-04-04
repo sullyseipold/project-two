@@ -1,24 +1,51 @@
 <div id="home">
   <div class="container">
+    <form action="/items" method="POST">
 
+        <div class="form-group">
+          <label for="item-name">Item name</label>
+          <input name="name" type="text" id="item-name" class="form-control" aria-describedby="example-text" placeholder="name">
+        </div>
+        {{!-- <div class="form-group">
+          <label for="item-description">Description</label>
+          <input name="description" class="form-control" id="item-description" aria-describedby="example-description"
+            placeholder="Enter item Description"></input>
+        </div> --}}
+        <div class="form-group">
+          <label for="item-price">Price</label>
+          <input name="price" type="text" id="item-price" class="form-control" aria-describedby="example-price" placeholder="price">
+        </div>
+        {{!-- <div class="form-group">
+          <label for="image-url">Item photo URL</label>
+          <input name="imageurl" type="text" id="image-url" class="form-control" aria-describedby="example-image-url" placeholder="url">
+        </div> --}}
+        {{!-- <div class="form-group">
+          <input name="availability" type="checkbox" class="form-control" value="false">
+        </div> --}}
+        <button id="new-item-btn" class="btn btn-success float-right">Submit</button>
+        </form>
     <div class="row">
       <div class="col-8 offset-2">
         <h1>Naybo!</h1>
         <h4>Need a Neighbor?</h4>
 
+        {{#each items}}
+
+        {{this.name}}
+
+        {{/each}}
 
         {{!-- <form class="clearfix mb-4" action="POST"> --}}
-          <div class="form-group">
-            <label for="example-text">Username</label>
-            <input type="text" id="username" class="form-control" aria-describedby="username" placeholder="username">
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" class="form-control" aria-describedby="password"
-              placeholder="password">
-          </div>
-          <button id="submit-btn" class="btn btn-success">Submit</button>
-          <button id="new-user-btn" class="btn btn-success">Create New User</button>
+        <div class="form-group">
+          <label for="example-text">Username</label>
+          <input type="text" id="username" class="form-control" aria-describedby="username" placeholder="username">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" class="form-control" aria-describedby="password" placeholder="password">
+        </div>
+        <button id="submit-btn" class="btn btn-success">Submit</button>
+        <button id="new-user-btn" class="btn btn-success">Create New User</button>
         {{!-- </form> --}}
 
         <!-- modal -->
@@ -35,26 +62,28 @@
               {{!-- Create Account - New User --}}
               <div class="modal-body">
 
-            <form action="/users" method="POST">
+                <form action="/users" method="POST">
 
-                <div class="form-group">
-                  <label for="new-name">Name</label>
-                  <input name="name" type="text" id="new-name" class="form-control user-form" placeholder="Name">
-                </div>
-                <div class="form-group">
-                  <label for="new-username">Pick a username</label>
-                  <input name="username" type="text" id="new-username" class="form-control user-form" placeholder="Username">
-                </div>
-                <div class="form-group">
-                  <label for="new-email">Email</label>
-                  <input name="email" type="email" id="new-email" class="form-control user-form" placeholder="Email">
-                </div>
-                <div class="form-row">
-                  <div class="col">
-                    <label for="new-city">City</label>
-                    <input name="city" type="text" id="new-city" class="form-control user-form" placeholder="Enter your city">
+                  <div class="form-group">
+                    <label for="new-name">Name</label>
+                    <input name="name" type="text" id="new-name" class="form-control user-form" placeholder="Name">
                   </div>
-                  {{!-- <div class="col">
+                  <div class="form-group">
+                    <label for="new-username">Pick a username</label>
+                    <input name="username" type="text" id="new-username" class="form-control user-form"
+                      placeholder="Username">
+                  </div>
+                  <div class="form-group">
+                    <label for="new-email">Email</label>
+                    <input name="email" type="email" id="new-email" class="form-control user-form" placeholder="Email">
+                  </div>
+                  <div class="form-row">
+                    <div class="col">
+                      <label for="new-city">City</label>
+                      <input name="city" type="text" id="new-city" class="form-control user-form"
+                        placeholder="Enter your city">
+                    </div>
+                    {{!-- <div class="col">
                     <label for="new-state">State</label>
                     <select class="form-control user-form" id="new-state">
                       <option value="AL">Alabama</option>
@@ -110,19 +139,19 @@
                       <option value="WY">Wyoming</option>
                     </select>
                   </div> --}}
-                </div>
-                <div class="form-group">
-                  <label for="new-password">Password</label>
-                  <input name="password" type="password" id="new-password" class="form-control user-form"
-                    aria-describedby="new-password" placeholder="password">
-                </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="new-password">Password</label>
+                    <input name="password" type="password" id="new-password" class="form-control user-form"
+                      aria-describedby="new-password" placeholder="password">
+                  </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 <button type="button" id="create-user-btn" class="btn btn-primary">Create</button>
                 </form>
               </div>
-      
+
             </div>
           </div>
         </div>
