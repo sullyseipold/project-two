@@ -2,8 +2,6 @@ $(document).ready(function () {
   console.log("hi there!")
 
   // This file includes code to LOGIN and CREATE NEW USERS by taking input from the html file
-  var $username = $("#username");
-  var $password = $("#password");
 
   // METHODS FOR REQUESTS
   var API = {
@@ -17,10 +15,14 @@ $(document).ready(function () {
         data: JSON.stringify(user)
       });
     },
-    getUser: function (username, ) {
+    getUser: function (username, password) {
       return $.ajax({
-        url: `/user?user_name=${username}&password=${password}`,
-        type: "GET"
+        url: "api/validate",
+        type: "POST",
+        data: {
+          user_name: username,
+          password: password
+        }
       });
     },
 
@@ -28,21 +30,20 @@ $(document).ready(function () {
 
   // LOGIN FUNCTION
   function userLogin() {
-    var username = $username.val().trim();
-    var password = $password.val().trim();
-    API.getUser(username, password).then(function (data) {
-      var user = data.user;
-      if (!user.user_name) {
-        alert("User name or password is incorrect.");
-      } else {
-        window.location.href = "/search";
-      }
+    var username = $("[name=user_name]").val().trim();
+    var password = $("[name=password]").val().trim();
+    API.getUser(username, password).then(function () {
+      // send to next page
+      console.log("Yes!")
+
+    }, function (err) {
+      console.log("Cry!")
     });
   };
 
 
 
-  //--------------------------------------
+  //----------------------------------------
   // ADDING USERS
   //----------------------------------------
 
