@@ -34,19 +34,18 @@ module.exports = function (app) {
   // RENDER USER ACCOUNT PAGE
   app.get("/account", function (req, res) {
     res.render("account");
-    });
+  });
 
   //GET ALL ITEMS 
-  app.get("/items", function (req, res) {
-    db.Item.findAll({}).then(function () {
-      res.json(dbItems);
-    });
-
-    // RENDER USER ACCOUNT PAGE
-    app.get("/account", function(req, res) {
-      res.render("account");
-    });
+  app.get("/search", function (req, res) {
+    res.render("search");
   });
+
+  // RENDER USER ACCOUNT PAGE
+  app.get("/account", function (req, res) {
+    res.render("account");
+  });
+
 
 
 
@@ -55,7 +54,5 @@ module.exports = function (app) {
     res.render("404");
   });
 
-  
+
 };
-
-
