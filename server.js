@@ -40,12 +40,11 @@ require("./routes/htmlRoutes")(app);
 var syncOptions = {
   force: false
 };
-//I commented this out because it prevented grabbing data for the index page? 
-// If running a test, set syncOptions.force to true
-// clearing the `testdb`
-// if (process.env.NODE_ENV === "test") {
-//   syncOptions.force = true;
-// }
+
+// If running on heroku, set syncOptions.force to true
+if (process.env.NODE_ENV === "production") {
+  syncOptions.force = true;
+}
 
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function() {

@@ -1,6 +1,6 @@
 var db = require("../models");
 
-module.exports = function (app) {
+module.exports = function(app) {
   // Load index page
   // app.get("/", function (req, res) {
   //   db.Example.findAll({}).then(function (dbExamples) {
@@ -22,37 +22,32 @@ module.exports = function (app) {
   // });
 
   // LOAD LOGIN PAGE
-  app.get("/", function (req, res) {
+  app.get("/", function(req, res) {
     res.render("index");
   });
 
   // RENDER ADD ITEM PAGE
-  app.get("/items/add", function (req, res) {
+  app.get("/items/add", function(req, res) {
     res.render("additem");
   });
 
   // RENDER USER ACCOUNT PAGE
-  app.get("/account", function (req, res) {
+  app.get("/account", function(req, res) {
     res.render("account");
   });
 
-  //GET ALL ITEMS 
-  app.get("/search", function (req, res) {
+  //GET ALL ITEMS
+  app.get("/search", function(req, res) {
     res.render("search");
   });
 
   // RENDER USER ACCOUNT PAGE
-  app.get("/account", function (req, res) {
+  app.get("/account", function(req, res) {
     res.render("account");
   });
 
-
-
-
   // Render 404 page for any unmatched routes
-  app.get("*", function (req, res) {
+  app.get("*", function(req, res) {
     res.render("404");
   });
-
-
 };
