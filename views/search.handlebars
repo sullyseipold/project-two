@@ -1,6 +1,11 @@
 <div id="home">
     <div class="container">
         <div class="row">
+            {{#each items}}
+
+            <p>{{this.name}}</p>
+
+            {{/each}}
             <div class="col-8 offset-2">
 
                 <h2>Rent an Item</h2>

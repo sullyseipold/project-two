@@ -1,49 +1,50 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Load index page
-  // app.get("/", function (req, res) {
-  //   db.Example.findAll({}).then(function (dbExamples) {
-  //     res.render("index", {
-  //       msg: "Welcome!",
-  //       examples: dbExamples
-  //     });
-  //   });
-  // });
-
-  // // Load example page and pass in an example by id
-  // app.get("/example/:id", function (req, res) {
-  //   // eslint-disable-next-line prettier/prettier
-  //   db.Example.findOne({ where: { id: req.params.id } }).then(function (dbExample) {
-  //     res.render("example", {
-  //       example: dbExample
-  //     });
-  //   });
-  // });
-
   // LOAD LOGIN PAGE
   app.get("/", function(req, res) {
     res.render("index");
   });
 
-  // RENDER ADD ITEM PAGE
+  // ===== Items ======
+  // View all items
+  app.get("/items", function(req, res) {
+    db.Item.findAll({}).then(function(data) {
+      res.render("search", { items: data });
+    });
+  });
+
+  // Add item page
   app.get("/items/add", function(req, res) {
     res.render("additem");
   });
 
-  // RENDER USER ACCOUNT PAGE
-  app.get("/account", function(req, res) {
-    res.render("account");
+  // Create a new item entry
+  app.post("/allitems", function(req, res) {
+    // Create new Item from /allitems body??
+    db.Item.create(req.body).then(function() {
+      // Refresh page??
+      res.redirect("/allitems");
+    });
   });
 
-  //GET ALL ITEMS
-  app.get("/search", function(req, res) {
-    res.render("search");
+  // ===== Users ======
+  // Specific user account
+  app.get("/account/:id", function(req, res) {
+    // Get user from ID in parameters
+    db.User.findOne({ where: { id: req.params.id } }).then(function(dbUser) {
+      // Plug User data into "account" page
+      res.render("account", {
+        data: dbUser
+      });
+    });
   });
 
-  // RENDER USER ACCOUNT PAGE
-  app.get("/account", function(req, res) {
-    res.render("account");
+  // Create a new user entry
+  app.post("/users", function(req, res) {
+    db.User.create(req.body).then(function() {
+      res.redirect("/");
+    });
   });
 
   // Render 404 page for any unmatched routes

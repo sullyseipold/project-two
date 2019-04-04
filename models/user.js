@@ -1,4 +1,4 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define("User", {
     id: {
       type: DataTypes.INTEGER,
@@ -10,7 +10,7 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    user_name: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -19,23 +19,23 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false
     },
     email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        isEmail: true
-      }
+      type: DataTypes.STRING
+      // allowNull: false,
+      // validate: {
+      //   isEmail: true
+      // }
     },
     city: {
       type: DataTypes.STRING,
       allowNull: false
-    },
-    state: {
-      type: DataTypes.STRING,
-      allowNull: false,
     }
+    // state: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false
+    // }
   });
 
-  User.associate = function (models) {
+  User.associate = function(models) {
     // Associating User with Items
     // When a User is deleted, also delete any associated Items
     User.hasMany(models.Item, {

@@ -5,7 +5,9 @@
       <div class="col-8 offset-2">
         <h1>Naybo!</h1>
         <h4>Need a Neighbor?</h4>
-        <form class="clearfix mb-4" action="POST">
+
+
+        {{!-- <form class="clearfix mb-4" action="POST"> --}}
           <div class="form-group">
             <label for="example-text">Username</label>
             <input type="text" id="username" class="form-control" aria-describedby="username" placeholder="username">
@@ -17,7 +19,7 @@
           </div>
           <button id="submit-btn" class="btn btn-success">Submit</button>
           <button id="new-user-btn" class="btn btn-success">Create New User</button>
-        </form>
+        {{!-- </form> --}}
 
         <!-- modal -->
         <div class="modal" id="new-user-modal" tabindex="-1" role="dialog">
@@ -29,25 +31,30 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
+
+              {{!-- Create Account - New User --}}
               <div class="modal-body">
+
+            <form action="/users" method="POST">
+
                 <div class="form-group">
                   <label for="new-name">Name</label>
-                  <input type="text" id="new-name" class="form-control user-form" placeholder="Name">
+                  <input name="name" type="text" id="new-name" class="form-control user-form" placeholder="Name">
                 </div>
                 <div class="form-group">
                   <label for="new-username">Pick a username</label>
-                  <input type="text" id="new-username" class="form-control user-form" placeholder="Username">
+                  <input name="username" type="text" id="new-username" class="form-control user-form" placeholder="Username">
                 </div>
                 <div class="form-group">
                   <label for="new-email">Email</label>
-                  <input type="email" id="new-email" class="form-control user-form" placeholder="Email">
+                  <input name="email" type="email" id="new-email" class="form-control user-form" placeholder="Email">
                 </div>
                 <div class="form-row">
                   <div class="col">
                     <label for="new-city">City</label>
-                    <input type="text" id="new-city" class="form-control user-form" placeholder="Enter your city">
+                    <input name="city" type="text" id="new-city" class="form-control user-form" placeholder="Enter your city">
                   </div>
-                  <div class="col">
+                  {{!-- <div class="col">
                     <label for="new-state">State</label>
                     <select class="form-control user-form" id="new-state">
                       <option value="AL">Alabama</option>
@@ -102,18 +109,20 @@
                       <option value="WI">Wisconsin</option>
                       <option value="WY">Wyoming</option>
                     </select>
-                  </div>
+                  </div> --}}
                 </div>
                 <div class="form-group">
                   <label for="new-password">Password</label>
-                  <input type="password" id="new-password" class="form-control user-form"
+                  <input name="password" type="password" id="new-password" class="form-control user-form"
                     aria-describedby="new-password" placeholder="password">
                 </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 <button type="button" id="create-user-btn" class="btn btn-primary">Create</button>
+                </form>
               </div>
+      
             </div>
           </div>
         </div>

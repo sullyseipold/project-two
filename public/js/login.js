@@ -1,72 +1,72 @@
 $(document).ready(function () {
-  console.log("hi there!")
+  // console.log("hi there!")
 
-  // This file includes code to LOGIN and CREATE NEW USERS by taking input from the html file
-  var $username = $("#username");
-  var $password = $("#password");
+  // // This file includes code to LOGIN and CREATE NEW USERS by taking input from the html file
+  // var $username = $("#username");
+  // var $password = $("#password");
 
-  // METHODS FOR REQUESTS
-  var API = {
-    saveUser: function (user) {
-      return $.ajax({
-        headers: {
-          "Content-Type": "application/json"
-        },
-        type: "POST",
-        url: "api/users",
-        data: JSON.stringify(user)
-      });
-    },
-    getUser: function (username, ) {
-      return $.ajax({
-        url: `/user?user_name=${username}&password=${password}`,
-        type: "GET"
-      });
-    },
+  // // METHODS FOR REQUESTS
+  // var API = {
+  //   saveUser: function(user) {
+  //     return $.ajax({
+  //       headers: {
+  //         "Content-Type": "application/json"
+  //       },
+  //       type: "POST",
+  //       url: "api/users",
+  //       data: JSON.stringify(user)
+  //     });
+  //   },
+  //   getUser: function (username, password) {
+  //     return $.ajax({
+  //       url: `/user?user_name=${username}&password=${password}`,
+  //       type: "GET"
+  //     });
+  //   },
 
-  };
+  // };
 
-  // LOGIN FUNCTION
-  function userLogin() {
-    var username = $username.val().trim();
-    var password = $password.val().trim();
-    API.getUser(username, password).then(function (data) {
-      var user = data.user;
-      if (!user.user_name) {
-        alert("User name or password is incorrect.");
-      } else {
-        window.location.href = "/search";
-      }
-    });
-  };
+  // // LOGIN FUNCTION
+  // function userLogin() {
+  //   var username = $username.val().trim();
+  //   var password = $password.val().trim();
+  //   API.getUser(username, password).then(function (data) {
+  //     var user = data.user;
+  //     if (!user.user_name) {
+  //       alert("User name or password is incorrect.");
+  //     } else {
+  //       window.location.href = "/search";
+  //     }
+  //   });
+  // };
 
 
 
-  //--------------------------------------
-  // ADDING USERS
-  //----------------------------------------
+  // //--------------------------------------
+  // // ADDING USERS
+  // //----------------------------------------
 
-  // ADD USER FUNCTION
-  function newUser() {
-    if ($(".user-form").val() == "") {
-      // validation - if form is blank display message (change alert to modal later)
-      alert("Please fill in form");
-    } else {
-      var newUser = {
-        name: $("#new-name").val().trim(),
-        user_name: $("#new-username").val().trim(),
-        email: $("#new-email").val().trim(),
-        password: $("#new-password").val().trim(),
-        city: $("#new-city").val().trim(),
-        state: $("#new-state").val()
-      };
-      console.log(newUser);
-      API.saveUser(newUser).then(function (data) {
-        console.log("new user added");
-        console.log(data);
-      });
-    };
-  }
+  // // ADD USER FUNCTION
+  // function newUser() {
+  //   if ($(".user-form").val() == "") {
+  //     // validation - if form is blank display message (change alert to modal later)
+  //     alert("Please fill in form");
+  //   } else {
+  //     var newUser = {
+  //       name: $("#new-name").val().trim(),
+  //       user_name: $("#new-username").val().trim(),
+  //       email: $("#new-email").val().trim(),
+  //       password: $("#new-password").val().trim(),
+  //       city: $("#new-city").val().trim(),
+  //       state: $("#new-state").val()
+  //     };
+  //     console.log(newUser);
+  //     API.saveUser(newUser).then(function (data) {
+  //       console.log("new user added");
+  //       console.log(data);
+  //     });
+  //   };
+  // }
 
   // BUTTON LISTENERS
   // show modal
@@ -79,15 +79,13 @@ $(document).ready(function () {
   // login with username and password
   $("#submit-btn").on("click", function (e) {
     e.preventDefault();
-    userLogin();
+    // userLogin();
   });
 
   // create a new user 
-  $("#create-user-btn").on("click", function (e) {
-    e.preventDefault();
-    newUser();
-    $("#new-user-modal").modal("hide");
-  });
-
-
-})
+  // $("#create-user-btn").on("click", function (e) {
+  //   e.preventDefault();
+  //   // newUser();
+  //   $("#new-user-modal").modal("hide");
+  // });
+});

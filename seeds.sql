@@ -1,4 +1,5 @@
-USE naybo_db;
+CREATE DATABASE sequelize_naybo_db;
+USE sequelize_naybo_db;
 
 INSERT INTO Users (name,user_name,password,email,city,state,createdAt,updatedAt) 
 VALUES ('Miranda','mirwoz','password','miranda@gmail.com','Portsmouth','NH',NOW(),NOW()),
