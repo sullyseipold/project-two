@@ -59,6 +59,22 @@ module.exports = function (app) {
     });
   });
 
+  app.post("/api/validate", function (req, res) {
+    db.User.findOne({
+      where: {
+        user_name: req.body.user_name,
+        password: req.body.password
+      }
+    }).then(function (record) {
+      if (record) {
+        res.status(200);
+      } else {
+        res.status(402);
+      }
+      res.send();
+    })
+  });
+
   // GET USER BY USER USERNAME
   app.get("/api/user/user_name/:user_name", function (req, res) {
     console.log("req.params.username = ", req.params.user_name);
