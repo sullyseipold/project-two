@@ -1,5 +1,6 @@
 require("dotenv").config();
 var express = require("express");
+// var methodOverride = require('method-override');
 var exphbs = require("express-handlebars");
 var aws = require("aws-sdk");
 
@@ -15,13 +16,12 @@ aws.config.update({
 });
 
 // Middleware
-app.use(
-  express.urlencoded({
-    extended: false
-  })
-);
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
+
+// Override with POST having ?_method=PUT
+// app.use(methodOverride('_method'));
 
 // Handlebars
 app.engine(
@@ -34,18 +34,17 @@ app.set("view engine", "handlebars");
 
 // Routes
 require("./routes/s3Routes")(app);
-require("./routes/apiRoutes")(app);
+// require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
 var syncOptions = {
   force: false
 };
-//I commented this out because it prevented grabbing data for the index page? 
-// If running a test, set syncOptions.force to true
-// clearing the `testdb`
-// if (process.env.NODE_ENV === "test") {
-//   syncOptions.force = true;
-// }
+
+// If running on heroku, set syncOptions.force to true
+if (process.env.NODE_ENV === "production") {
+  syncOptions.force = true;
+}
 
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function() {

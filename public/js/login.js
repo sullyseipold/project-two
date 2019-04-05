@@ -1,11 +1,12 @@
-$(document).ready(function () {
-  console.log("hi there!")
+$(document).ready(function() {
+  console.log("hi there!");
+
 
   // This file includes code to LOGIN and CREATE NEW USERS by taking input from the html file
 
   // METHODS FOR REQUESTS
   var API = {
-    saveUser: function (user) {
+    saveUser: function(user) {
       return $.ajax({
         headers: {
           "Content-Type": "application/json"
@@ -23,6 +24,7 @@ $(document).ready(function () {
           user_name: username,
           password: password
         }
+
       });
     },
 
@@ -80,15 +82,13 @@ $(document).ready(function () {
   // login with username and password
   $("#submit-btn").on("click", function (e) {
     e.preventDefault();
-    userLogin();
+    // userLogin();
   });
 
   // create a new user 
   $("#create-user-btn").on("click", function (e) {
     e.preventDefault();
-    newUser();
+    // newUser();
     $("#new-user-modal").modal("hide");
   });
-
-
-})
+});

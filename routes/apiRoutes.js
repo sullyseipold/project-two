@@ -4,19 +4,7 @@ var db = require("../models");
 
 
 module.exports = function (app) {
-  // Get all examples
-  app.get("/api/examples", function (req, res) {
-    db.Example.findAll({}).then(function (dbExamples) {
-      res.json(dbExamples);
-    });
-  });
 
-  // Create a new example
-  app.post("/api/examples", function (req, res) {
-    db.Example.create(req.body).then(function (dbExample) {
-      res.json(dbExample);
-    });
-  });
 
   // Delete an example by id
   app.delete("/api/examples/:id", function (req, res) {
@@ -112,19 +100,19 @@ module.exports = function (app) {
                     ITEM ROUTES
     ==============================================================================*/
 
-  // CREATE NEW ITEM
-  app.post("/api/items", function (req, res) {
-    console.log(req.body);
-    db.Item.create({
-      item_name: req.body.item_name,
-      price: req.body.price,
-      description: req.body.description,
-      image_url: req.body.image_url,
-      UserId: req.body.userId
-    }).then(function (dbItems) {
-      res.json(dbItems);
-    });
-  });
+  // // CREATE NEW ITEM
+  // app.post("/api/items", function (req, res) {
+  //   console.log(req.body);
+  //   db.Item.create({
+  //     item_name: req.body.item_name,
+  //     price: req.body.price,
+  //     description: req.body.description,
+  //     image_url: req.body.image_url,
+  //     UserId: req.body.userId
+  //   }).then(function (dbItems) {
+  //     res.json(dbItems);
+  //   });
+  // });
 
   //GET ITEM BY NAME
   app.get("/api/search/:item", function (req, res) {

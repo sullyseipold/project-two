@@ -1,16 +1,15 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define("User", {
     id: {
       type: DataTypes.INTEGER,
-      autoIncrement: true,
       primaryKey: true,
-      allowNull: false
+      autoIncrement: true
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    user_name: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -31,17 +30,18 @@ module.exports = function (sequelize, DataTypes) {
     },
     state: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     }
   });
 
-  User.associate = function (models) {
-    // Associating User with Items
-    // When a User is deleted, also delete any associated Items
-    User.hasMany(models.Item, {
-      onDelete: "cascade"
-    });
-  };
+  // User.associate = function(models) {
+  //   // Associating User with Items
+  //   // When a User is deleted, also delete any associated Items
+  //   User.hasMany(models.Item, {
+  //     onDelete: "cascade"
+  //   });
+  //   // 'user.getItems()' gets you all items (posted by user)
+  // };
 
   return User;
 };

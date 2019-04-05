@@ -1,58 +1,76 @@
 var db = require("../models");
 
-module.exports = function (app) {
-  // Load index page
-  // app.get("/", function (req, res) {
-  //   db.Example.findAll({}).then(function (dbExamples) {
-  //     res.render("index", {
-  //       msg: "Welcome!",
-  //       examples: dbExamples
-  //     });
-  //   });
-  // });
+module.exports = function(app) {
 
-  // // Load example page and pass in an example by id
-  // app.get("/example/:id", function (req, res) {
-  //   // eslint-disable-next-line prettier/prettier
-  //   db.Example.findOne({ where: { id: req.params.id } }).then(function (dbExample) {
-  //     res.render("example", {
-  //       example: dbExample
-  //     });
-  //   });
-  // });
-
-  // LOAD LOGIN PAGE
-  app.get("/", function (req, res) {
-    res.render("index");
+  // ===== Items ======
+  // View all items
+  app.get("/", function(req, res) {
+    db.Item.findAll({}).then(function(data) {
+      res.render("index", { items: data });
+    });
   });
 
-  // RENDER ADD ITEM PAGE
-  app.get("/items/add", function (req, res) {
+  // Add item page
+  app.get("/add", function(req, res) {
     res.render("additem");
   });
 
-  // RENDER USER ACCOUNT PAGE
-  app.get("/account", function (req, res) {
-    res.render("account");
+  // Create a new item entry
+  app.post("/item", function(req, res) {
+    // Create new Item from /allitems body??
+    db.Item.create(req.body).then(function() {
+      res.redirect("/search");
+    });
   });
 
-  //GET ALL ITEMS 
-  app.get("/search", function (req, res) {
-    res.render("search");
+  app.get("/search", function(req, res) {
+    db.Item.findAll({}).then(function(data) {
+      res.render("search", { items: data });
+    });
   });
 
-  // RENDER USER ACCOUNT PAGE
-  app.get("/account", function (req, res) {
-    res.render("account");
+  app.get("/search/:name", function(req, res) {
+    db.Item.findAll({
+      where: {
+        name: req.params.name
+      }
+    }).then(function(data) {
+      res.render("search", { items: data });
+    });
+  });
+  // When one clicks on a posted item
+  app.get("/item/:id", function(req, res) {
+    // Find that special searched item
+    db.Item.findAll({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(data){
+      res.render("item", { item: data });
+    });
   });
 
+  // ===== Users ======
+  // Specific user account
+  app.get("/account/:id", function(req, res) {
+    // Get user from ID in parameters
+    db.User.findOne({ where: { id: req.params.id } }).then(function(dbUser) {
+      // Plug User data into "account" page
+      res.render("account", {
+        data: dbUser
+      });
+    });
+  });
 
-
+  // Create a new user entry
+  // app.post("/users", function(req, res) {
+  //   db.User.create(req.body).then(function() {
+  //     res.redirect("/");
+  //   });
+  // });
 
   // Render 404 page for any unmatched routes
-  app.get("*", function (req, res) {
+  app.get("*", function(req, res) {
     res.render("404");
   });
-
-
 };

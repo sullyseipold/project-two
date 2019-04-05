@@ -1,10 +1,11 @@
+
 <div id="home">
   <div class="container">
-
     <div class="row">
       <div class="col-8 offset-2">
         <h1>Naybo!</h1>
         <h4>Need a Neighbor?</h4>
+
         <form class="clearfix mb-4" action="POST">
           <div class="form-group">
             <label for="example-text">Username</label>
@@ -30,91 +31,106 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
+
+
+              {{!-- Create Account - New User --}}
               <div class="modal-body">
-                <div class="form-group">
-                  <label for="new-name">Name</label>
-                  <input type="text" id="new-name" class="form-control user-form" placeholder="Name">
-                </div>
-                <div class="form-group">
-                  <label for="new-username">Pick a username</label>
-                  <input type="text" id="new-username" class="form-control user-form" placeholder="Username">
-                </div>
-                <div class="form-group">
-                  <label for="new-email">Email</label>
-                  <input type="email" id="new-email" class="form-control user-form" placeholder="Email">
-                </div>
-                <div class="form-row">
-                  <div class="col">
-                    <label for="new-city">City</label>
-                    <input type="text" id="new-city" class="form-control user-form" placeholder="Enter your city">
+
+
+                {{!-- Need parameter logic --}}
+                <form action="/users" method="POST">
+
+                  <div class="form-group">
+                    <label for="new-name">Name</label>
+                    <input name="name" type="text" id="new-name" class="form-control user-form" placeholder="Name">
                   </div>
-                  <div class="col">
-                    <label for="new-state">State</label>
-                    <select class="form-control user-form" id="new-state">
-                      <option value="AL">Alabama</option>
-                      <option value="AK">Alaska</option>
-                      <option value="AZ">Arizona</option>
-                      <option value="AR">Arkansas</option>
-                      <option value="CA">California</option>
-                      <option value="CO">Colorado</option>
-                      <option value="CT">Connecticut</option>
-                      <option value="DE">Delaware</option>
-                      <option value="DC">District Of Columbia</option>
-                      <option value="FL">Florida</option>
-                      <option value="GA">Georgia</option>
-                      <option value="HI">Hawaii</option>
-                      <option value="ID">Idaho</option>
-                      <option value="IL">Illinois</option>
-                      <option value="IN">Indiana</option>
-                      <option value="IA">Iowa</option>
-                      <option value="KS">Kansas</option>
-                      <option value="KY">Kentucky</option>
-                      <option value="LA">Louisiana</option>
-                      <option value="ME">Maine</option>
-                      <option value="MD">Maryland</option>
-                      <option value="MA">Massachusetts</option>
-                      <option value="MI">Michigan</option>
-                      <option value="MN">Minnesota</option>
-                      <option value="MS">Mississippi</option>
-                      <option value="MO">Missouri</option>
-                      <option value="MT">Montana</option>
-                      <option value="NE">Nebraska</option>
-                      <option value="NV">Nevada</option>
-                      <option value="NH">New Hampshire</option>
-                      <option value="NJ">New Jersey</option>
-                      <option value="NM">New Mexico</option>
-                      <option value="NY">New York</option>
-                      <option value="NC">North Carolina</option>
-                      <option value="ND">North Dakota</option>
-                      <option value="OH">Ohio</option>
-                      <option value="OK">Oklahoma</option>
-                      <option value="OR">Oregon</option>
-                      <option value="PA">Pennsylvania</option>
-                      <option value="RI">Rhode Island</option>
-                      <option value="SC">South Carolina</option>
-                      <option value="SD">South Dakota</option>
-                      <option value="TN">Tennessee</option>
-                      <option value="TX">Texas</option>
-                      <option value="UT">Utah</option>
-                      <option value="VT">Vermont</option>
-                      <option value="VA">Virginia</option>
-                      <option value="WA">Washington</option>
-                      <option value="WV">West Virginia</option>
-                      <option value="WI">Wisconsin</option>
-                      <option value="WY">Wyoming</option>
-                    </select>
+                  <div class="form-group">
+                    <label for="new-username">Pick a username</label>
+                    <input name="username" type="text" id="new-username" class="form-control user-form"
+                      placeholder="Username">
                   </div>
-                </div>
-                <div class="form-group">
-                  <label for="new-password">Password</label>
-                  <input type="password" id="new-password" class="form-control user-form"
-                    aria-describedby="new-password" placeholder="password">
-                </div>
+                  <div class="form-group">
+                    <label for="new-email">Email</label>
+                    <input name="email" type="email" id="new-email" class="form-control user-form" placeholder="Email">
+                  </div>
+
+                  <div class="form-row">
+                    <div class="col">
+                      <label for="new-city">City</label>
+                      <input name="city" type="text" id="new-city" class="form-control user-form"
+                        placeholder="Enter your city">
+                    </div>
+
+                    <div class="col">
+                      <label for="new-state">State</label>
+
+                      <select name="state" class="form-control user-form" id="new-state">
+                        <option value="AL">Alabama</option>
+                        <option value="AK">Alaska</option>
+                        <option value="AZ">Arizona</option>
+                        <option value="AR">Arkansas</option>
+                        <option value="CA">California</option>
+                        <option value="CO">Colorado</option>
+                        <option value="CT">Connecticut</option>
+                        <option value="DE">Delaware</option>
+                        <option value="DC">District Of Columbia</option>
+                        <option value="FL">Florida</option>
+                        <option value="GA">Georgia</option>
+                        <option value="HI">Hawaii</option>
+                        <option value="ID">Idaho</option>
+                        <option value="IL">Illinois</option>
+                        <option value="IN">Indiana</option>
+                        <option value="IA">Iowa</option>
+                        <option value="KS">Kansas</option>
+                        <option value="KY">Kentucky</option>
+                        <option value="LA">Louisiana</option>
+                        <option value="ME">Maine</option>
+                        <option value="MD">Maryland</option>
+                        <option value="MA">Massachusetts</option>
+                        <option value="MI">Michigan</option>
+                        <option value="MN">Minnesota</option>
+                        <option value="MS">Mississippi</option>
+                        <option value="MO">Missouri</option>
+                        <option value="MT">Montana</option>
+                        <option value="NE">Nebraska</option>
+                        <option value="NV">Nevada</option>
+                        <option value="NH">New Hampshire</option>
+                        <option value="NJ">New Jersey</option>
+                        <option value="NM">New Mexico</option>
+                        <option value="NY">New York</option>
+                        <option value="NC">North Carolina</option>
+                        <option value="ND">North Dakota</option>
+                        <option value="OH">Ohio</option>
+                        <option value="OK">Oklahoma</option>
+                        <option value="OR">Oregon</option>
+                        <option value="PA">Pennsylvania</option>
+                        <option value="RI">Rhode Island</option>
+                        <option value="SC">South Carolina</option>
+                        <option value="SD">South Dakota</option>
+                        <option value="TN">Tennessee</option>
+                        <option value="TX">Texas</option>
+                        <option value="UT">Utah</option>
+                        <option value="VT">Vermont</option>
+                        <option value="VA">Virginia</option>
+                        <option value="WA">Washington</option>
+                        <option value="WV">West Virginia</option>
+                        <option value="WI">Wisconsin</option>
+                        <option value="WY">Wyoming</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="new-password">Password</label>
+                    <input name="password" type="password" id="new-password" class="form-control user-form"
+                      aria-describedby="new-password" placeholder="password">
+                  </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 <button type="button" id="create-user-btn" class="btn btn-primary">Create</button>
+                </form>
               </div>
+
             </div>
           </div>
         </div>
@@ -132,4 +148,4 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
   integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-<script src="/js/login.js"></script>
+{{!-- <script src="/js/login.js"></script> --}}

@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "Pandabear11",
-    "database": "naybo_db",
+    "password": "password",
+    "database": "sequelize_naybo_db",
     "host": "127.0.0.1",
     "port": 3306,
     "dialect": "mysql"
