@@ -37,9 +37,7 @@ require("./routes/s3Routes")(app);
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
-var syncOptions = {
-  force: false
-};
+var syncOptions = { force: false };
 
 // If running on heroku, set syncOptions.force to true
 if (process.env.NODE_ENV === "production") {
@@ -48,7 +46,7 @@ if (process.env.NODE_ENV === "production") {
 
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function() {
-  app.listen(process.env.PORT || 3000, function(){
+  app.listen(process.env.PORT || 3000, function() {
     console.log(
       "Express server listening on port %d in %s mode",
       this.address().port,
