@@ -1,5 +1,9 @@
 <div class="container">
+{{!-- {{#each user}} --}}
 
+<h2>Welcome back, {{this.user.name}}!</h2>
+
+{{!-- {{/each}} --}}
   <div class="row profile">
     <div class="col-md-3">
       <div class="profile-sidebar">
@@ -36,9 +40,10 @@
                 Account Settings </a>
             </li>
             <li>
-              <a href="#" target="_blank">
+        <form action="/add" method="GET"><button>
                 <i class="glyphicon glyphicon-ok"></i>
-                Add Item </a>
+                Add Item</button>
+                </form>
             </li>
             <li>
               <a href="#">

@@ -77,12 +77,12 @@ module.exports = function (app) {
   });
 
   // GET USER BY USER USERNAME
-  app.get("/api/user/user_name/:user_name", function (req, res) {
-    console.log("req.params.username = ", req.params.user_name);
+  app.get("/api/user/username/:username", function (req, res) {
+    console.log("req.params.username = ", req.params.username);
 
     db.User.findOne({
       where: {
-        username: req.params.user_name
+        username: req.params.username
       }
     }).then(function (dbUser) {
       res.json(dbUser);
@@ -140,7 +140,7 @@ module.exports = function (app) {
 
     // CREATE NEW USER
     app.post("/api/item/url", function (req, res) {
-      db.Item.update({imageurl: req.body.imageUrl}, {where: {id: req.body.id}}).then(function (dbItem) {
+      db.Item.update({imageurl: req.body.imagerl}, {where: {id: req.body.id}}).then(function (dbItem) {
         res.json(dbItem);
       });
     });

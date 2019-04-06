@@ -3,11 +3,11 @@
 <!-- The surrounding HTML is left untouched by FirebaseUI.
      Your app may use that space for branding, controls and other customizations.-->
 
-<div id="firebaseui-auth-container">
+{{!-- <div id="firebaseui-auth-container">
 
 </div>
 
-<div id="loader">Loading...</div>
+<div id="loader">Loading...</div> --}}
 
 
 <div id="home">
@@ -17,7 +17,7 @@
         <h1 class="naybo">Naybo!</h1>
         <h4>Need a Neighbor?</h4>
 
-        <form class="clearfix mb-4" action="POST">
+        <form class="clearfix mb-4" action="GET">
           <div class="form-group">
             <label class = "coolFont2" for="username">Username</label>
             <input type="text" id="username" name="username" class="form-control" aria-describedby="username"
@@ -28,7 +28,7 @@
             <input type="password" name="password" id="password" class="form-control" aria-describedby="password"
               placeholder="password">
           </div>
-          <button id="submit-btn" class="btn btn-info">Submit</button>
+          <button type="submit" id="submit-btn" class="btn btn-info">Submit</button>
           <button id="new-user-btn" class="btn btn-dark">Create New User</button>
         </form>
 
@@ -49,7 +49,7 @@
 
 
                 {{!-- Need parameter logic --}}
-                <form action="/users" method="POST">
+                <form action="/api/user/{{this.id}}" method="POST">
 
                   <div class="form-group coolFont2">
                     <label for="new-name">Name</label>
@@ -159,4 +159,4 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
   integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-{{!-- <script src="/js/login.js"></script> --}}
+<script src="/js/login.js"></script>

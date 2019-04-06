@@ -6,7 +6,7 @@
                 <h1 class="naybo">Rent an Item</h1>
                 <form class="clearfix mb-4" action="POST">
                     <div class="form-group">
-                        <label class = "coolFont2" for="example-text">Search</label>
+                        <label class="coolFont2" for="example-text">Search</label>
                         <input type="text" id="search-text" class="form-control" aria-describedby="search-text"
                             placeholder="What are you looking for?">
 
@@ -18,9 +18,16 @@
                 <br>
                 <h1>Available Items:</h1>
                 <ul id="search-list" class="list-group coolFont2">
+                    {{#each items}}
+                    <form action="/item/{{this.id}}" method="GET">
+
+                        <li> <button type="submit">{{this.name}} </button>
+                        </li>
+
+                    </form>
 
 
-
+                    {{/each}}
                 </ul>
             </div>
         </div>

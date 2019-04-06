@@ -5,14 +5,13 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
   <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
-
-  {{!-- firebase ui --}}
-  <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
-
   {{!-- fonts --}}
   <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+
+  {{!-- datepicker jquery --}}
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 
   <title>Home Page</title>
 </head>
@@ -45,10 +44,10 @@
         </li>
 
         <li class="nav-item coolFont2">
-          {{!-- this needs to be configed with this.id -- get db.User in html routes --}}
-          <form action="/account" method="GET">
-            <a id="account" class="nav-link btn">My Account</a>
-          </form>
+
+          {{!-- <form action="/account/{{this.username}}" method="GET"> --}}
+            <button type="submit" id="account" class="nav-link btn">My Account</a>
+          {{!-- </form> --}}
 
         </li>
         <li class="nav-item coolFont2">
@@ -66,74 +65,6 @@
 
 <body class="bg">
   {{{body}}}
-
-  <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
-  <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyApsUV2HbMuCDra-xjAYH0eOMht-9Cs_LA",
-      authDomain: "naybo-93e66.firebaseapp.com",
-      databaseURL: "https://naybo-93e66.firebaseio.com",
-      projectId: "naybo-93e66",
-      storageBucket: "naybo-93e66.appspot.com",
-      messagingSenderId: "596833852567"
-    };
-    firebase.initializeApp(config);
-
-    var user = firebase.auth().currentUser;
-    var email, uid;
-
-    if (user != null) {
-      email = user.email;
-      uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
-      // this value to authenticate with your backend server, if
-      // you have one. Use User.getToken() instead.
-    }
-
-    // Initialize the FirebaseUI Widget using Firebase.
-    var ui = new firebaseui.auth.AuthUI(firebase.auth());
-
-
-    var uiConfig = {
-      callbacks: {
-        signInSuccessWithAuthResult: function (authResult, redirectUrl) {
-          // User successfully signed in.
-          // Return type determines whether we continue the redirect automatically
-          // or whether we leave that to developer to handle.
-          return true;
-        },
-        uiShown: function () {
-          // The widget is rendered.
-          // Hide the loader.
-          document.getElementById('loader').style.display = 'none';
-        }
-      },
-      // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-      signInFlow: 'popup',
-
-      signInSuccessUrl: '/account;
-
-      signInOptions: [
-        // Leave the lines as is for the providers you want to offer your users.
-        firebase.auth.EmailAuthProvider.PROVIDER_ID,
-      ]
-
-    };
-
-    firebase.auth().onAuthStateChanged(function (user) {
-      if (user) {
-        console.log(user.uid);
-        // User is signed in.
-      } else {
-        // No user is signed in.
-      }
-    });
-    // The start method will wait until the DOM is loaded.
-    ui.start('#firebaseui-auth-container', uiConfig);
-
-
-
-  </script>
 </body>
 
 </html>
