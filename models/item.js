@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var Item = sequelize.define("Item", {
     id: {
       type: DataTypes.INTEGER,
@@ -14,8 +14,8 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     description: DataTypes.STRING,
-    imageurl: DataTypes.STRING,
-    availablity: {
+    image_url: DataTypes.STRING,
+    availability: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true

@@ -6,17 +6,18 @@ var db = require("../models");
 module.exports = function (app) {
 
 
+
   // Delete an example by id
-  app.delete("/api/examples/:id", function (req, res) {
-    // eslint-disable-next-line prettier/prettier
-    db.Example.destroy({
-      where: {
-        id: req.params.id
-      }
-    }).then(function (dbExample) {
-      res.json(dbExample);
-    });
-  });
+  // app.delete("/api/examples/:id", function (req, res) {
+  //   // eslint-disable-next-line prettier/prettier
+  //   db.Example.destroy({
+  //     where: {
+  //       id: req.params.id
+  //     }
+  //   }).then(function (dbExample) {
+  //     res.json(dbExample);
+  //   });
+  // });
 
   /*==============================================================================
                   USER ROUTES
@@ -119,13 +120,21 @@ module.exports = function (app) {
     console.log("apiroute");
     db.Item.findAll({
       where: {
-        item_name: {
+        name: {
           like: `%${req.params.item}%`
         }
       }
     }).then(function (searchResults) {
       console.log(searchResults)
       res.json(searchResults);
+    });
+  });
+
+
+  // Get all items
+  app.get("/api/search", function (req, res) {
+    db.Item.findAll({}).then(function (dbItems) {
+      res.json(dbItems);
     });
   });
 };
