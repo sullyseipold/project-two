@@ -1,7 +1,7 @@
 {
   "name": "neybo",
   "version": "1.0.0",
-  "description": "neybo",
+  "description": "neybo app",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
