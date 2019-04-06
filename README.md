@@ -4,7 +4,7 @@ Full stack application that uses an API for entering, saving and retrieving data
 ### Welcome to the Neighborhood...
 This project is an excercise in writing a full stack application and in creating an API which connects with a database to store and retrieve data. 
 
-![picture](./naybo-for-readme.png)
+![picture](./readme-image/naybo-for-readme.png)
 
 #### Won't you be my neighbor?
  The concept behind this API is a tool sharing network of rentable items. Think of this as a prototype for a real world application in which you can borrow stuff from your neighbors or you can post your own stuff for your neighbors to borrow. 
