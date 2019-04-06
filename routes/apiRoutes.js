@@ -39,7 +39,7 @@ module.exports = function (app) {
 
     db.User.findOne({
       where: {
-        user_name: query.user_name,
+        username: query.username,
         password: query.password
       }
     }).then(function (dbUser) {
@@ -63,7 +63,7 @@ module.exports = function (app) {
   app.post("/api/validate", function (req, res) {
     db.User.findOne({
       where: {
-        user_name: req.body.user_name,
+        username: req.body.username,
         password: req.body.password
       }
     }).then(function (record) {
@@ -82,7 +82,7 @@ module.exports = function (app) {
 
     db.User.findOne({
       where: {
-        user_name: req.params.user_name
+        username: req.params.user_name
       }
     }).then(function (dbUser) {
       res.json(dbUser);

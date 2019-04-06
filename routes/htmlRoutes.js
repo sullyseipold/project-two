@@ -2,11 +2,20 @@ var db = require("../models");
 
 module.exports = function (app) {
 
-  // ===== Items ======
-  // View all items
+ // ===== Login ===========
   app.get("/", function (req, res) {
     db.Item.findAll({}).then(function (data) {
       res.render("index", {
+        items: data
+      });
+    });
+  });
+
+  // ===== Items ======
+  // View all items
+  app.get("/item", function (req, res) {
+    db.Item.findAll({}).then(function (data) {
+      res.render("item", {
         items: data
       });
     });
