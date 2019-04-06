@@ -3,30 +3,33 @@
     <div class="row">
       <div class="col-8 offset-2">
 
+        <h1>Add an Item:</h1>
 
         <form>
 
-          <div class="form-group">
-            <label for="item-name">Item name</label>
-            <input name="name" type="text" id="item-name" class="form-control" aria-describedby="example-text"
-              placeholder="name">
-          </div>
-          <div class="form-group">
-            <label for="item-description">Description</label>
-            <input name="description" class="form-control" id="item-description" aria-describedby="example-description"
-              placeholder="Enter item Description"></input>
-          </div>
-          <div class="form-group">
-            <label for="item-price">Price</label>
-            <input name="price" type="text" id="item-price" class="form-control" aria-describedby="example-price"
-              placeholder="price">
-          </div>
-          {{!-- <div class="form-group">
+        <div class="form-group">
+          <label class = "coolFont2" for="item-name">Item name</label>
+          <input name="name" type="text" id="item-name" class="form-control" aria-describedby="example-text" placeholder="name">
+        </div>
+        <div class="form-group">
+          <label class = "coolFont2" for="item-description">Description</label>
+          <input name="description" class="form-control" id="item-description" aria-describedby="example-description"
+            placeholder="Enter item Description"></input>
+        </div>
+        <div class="form-group">
+          <label class = "coolFont2" for="item-price">Price</label>
+          <input name="price" type="text" id="item-price" class="form-control" aria-describedby="example-price" placeholder="price">
+        </div>
+        <div class="form-group">
+          <label class = "coolFont2" for="image-url">Item photo URL</label>
+          <input name="imageurl" type="text" id="image-url" class="form-control" aria-describedby="example-image-url" placeholder="url">
+        </div>
+        {{!-- <div class="form-group">
           <label for="availability">Available now?</label>
           <input name="availability" type="checkbox" class="form-control" value="false">
         </div> --}}
-          <button id="new-item-btn" class="btn btn-success float-right">Submit</button>
-
+        <button id="new-item-btn" class="btn btn-dark float-right coolFont2">Submit</button>
+        
         </form>
 
 
