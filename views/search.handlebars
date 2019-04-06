@@ -1,41 +1,25 @@
 <div id="home">
     <div class="container">
         <div class="row">
-
             <div class="col-8 offset-2">
 
                 <h2>Rent an Item</h2>
-
-                <form action="/" class="clearfix mb-4" action="POST">
+                <form class="clearfix mb-4" action="POST">
                     <div class="form-group">
                         <label for="example-text">Search</label>
-                        <input name="search" type="text" id="search-text" class="form-control"
-                            aria-describedby="search-text" placeholder="What are you looking to rent?">
+                        <input type="text" id="search-text" class="form-control" aria-describedby="search-text"
+                            placeholder="What are you looking to rent?">
 
                         <br>
-                        <button id="submit" class="btn btn-primary float-right">Submit</button>
-                        <button id="allItems" class="btn btn-primary float-left">Show All</button>
+                        <button id="submit" class="btn btn-primary float-center">Submit</button>
+                        {{!-- <button id="allItems" class="btn btn-primary float-left">Show All</button> --}}
                 </form>
                 <br>
                 <br>
-
-                {{!-- <h3>Searches:</h3> --}}
-                <h3>All Available Items:</h3>
-
+                <h3>Searches:</h3>
                 <ul id="search-list" class="list-group">
-                    {{#each items}}
-                    {{!-- only display if true --}}
-                    {{#if this.availablity}}
 
-                    <p>{{this.name}}</p>
 
-                    {{!-- navigate to any of these items --}}
-                    <form action="/item/{{this.id}}" method="GET">
-                        <button type="submit">View Item</button>
-                    </form>
-
-                    {{/if}}
-                    {{/each}}
 
                 </ul>
             </div>

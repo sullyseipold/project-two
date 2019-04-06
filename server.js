@@ -16,7 +16,9 @@ aws.config.update({
 });
 
 // Middleware
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({
+  extended: true
+}));
 app.use(express.json());
 app.use(express.static("public"));
 
@@ -34,7 +36,7 @@ app.set("view engine", "handlebars");
 
 // Routes
 require("./routes/s3Routes")(app);
-// require("./routes/apiRoutes")(app);
+require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
 var syncOptions = {
@@ -47,8 +49,8 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function() {
-  app.listen(PORT, function() {
+db.sequelize.sync(syncOptions).then(function () {
+  app.listen(PORT, function () {
     console.log(
       "Listening on port %s. Visit http://localhost:%s/ in your browser.",
       PORT,

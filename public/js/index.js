@@ -1,59 +1,37 @@
 // Get references to page elements
 var $searchText = $("#search-text");
-var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
-var $allItems = $("#allItems");
+var $allItemsBtn = $("#allItems");
 var $searchList = $("#search-list");
+
 
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveExample: function (example) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
-    });
-  },
-  // getExamples: function () {
-  //   return $.ajax({
-  //     url: "api/examples",
-  //     type: "GET"
-  //   });
-  // },
-  deleteExample: function (id) {
-    return $.ajax({
-      url: "api/examples/" + id,
-      type: "DELETE"
-    });
-  },
+
   //return specific item related to a search term
   searchItem: function (searchTerm) {
     return $.ajax({
-      type: "GET",
-      url: `api/search/${searchTerm}`
+      url: `api/search/${searchTerm}`,
+      type: "GET"
     });
   },
   //return all items in database
   searchAll: function () {
     return $.ajax({
-      type: "GET",
-      url: "api/item"
+      url: "api/search",
+      type: "GET"
     })
   }
 };
 
 
-
 // refreshExamples gets new examples from the db and repopulates the list
 var refreshExamples = function (searchResults) {
-  console.log(searchResults);
+
   var searchLinks = searchResults.map(function (searchResult) {
     var $a = $("<a>")
-      .text(searchResult.item_name)
+      .text(searchResult.name)
       .attr("href", "/item/" + searchResult.id);
 
     var price = $("<p>")
@@ -66,7 +44,6 @@ var refreshExamples = function (searchResults) {
       })
       .append($a, price);
 
-    console.log(searchResult);
     return $li;
 
   });
@@ -76,25 +53,14 @@ var refreshExamples = function (searchResults) {
 
 };
 
+// handleFormSubmit is called whenever we submit a new search
 
-//Session Storage???
-var storage = function () {
-  sessionStorage.clear();
-  sessionStorage.setItem("item", searchLinks);
-
-  $("#search-list").text(sessionStorage.getItem("item"))
-};
-
-
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
 var handleFormSubmit = function (event) {
   event.preventDefault();
-
   var searchTerm = $searchText.val().trim();
 
   if (!(searchTerm)) {
-    alert("You must enter item!");
+    displayAll();
     return;
   }
 
@@ -103,29 +69,19 @@ var handleFormSubmit = function (event) {
   });
 
   $searchText.val("");
-
 };
 
-var displayAll = function (event) {
-  event.preventDefault();
-  API.searchAll().then(function (dbItems) {
-    refreshExamples(dbItems)
+var displayAll = function (dbItems) {
+  $searchText.empty();
+  API.searchAll(dbItems).then(function (allItems) {
+    refreshExamples(allItems)
   })
 };
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function () {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
-
-  API.deleteExample(idToDelete).then(function () {
-    refreshExamples();
-  });
-};
-
 
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
-$searchList.on("click", ".delete", handleDeleteBtnClick);
-$allItems.on("click", displayAll)
+//For some reason allItems button reverts back to the login page? So I'm leaving it out for now
+// $allItemsBtn.on("click", displayAll);
+
+//when the page loads run the display all function to display all items
+displayAll();
