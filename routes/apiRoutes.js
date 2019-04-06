@@ -137,4 +137,11 @@ module.exports = function (app) {
       res.json(dbItems);
     });
   });
+
+    // CREATE NEW USER
+    app.post("/api/item/url", function (req, res) {
+      db.Item.update({imageurl: req.body.imageUrl}, {where: {id: req.body.id}}).then(function (dbItem) {
+        res.json(dbItem);
+      });
+    });
 };

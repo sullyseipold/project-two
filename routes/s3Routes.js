@@ -27,6 +27,8 @@ const singleUpload = upload.single('image')
 module.exports = function(app) {
 // Create a new example
 app.post("/api/image-upload", function(req, res) {
+  console.log('inside image-upload');
+  console.log('s3 request', req);
   singleUpload(req, res, function(err, some) {
         if (err) {
           console.log('error = ', err);
