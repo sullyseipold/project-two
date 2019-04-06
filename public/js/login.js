@@ -24,12 +24,16 @@ $(document).ready(function() {
           username: username,
           password: password
         }
-
       });
     },
 
-
-
+    loadItemPage: function() {
+      console.log('INSIDE LOADITEMPAGE');
+      return $.ajax({
+        url: "/item",
+        type: "GET"
+      });
+    }
   };
 
   // LOGIN FUNCTION
@@ -39,11 +43,9 @@ $(document).ready(function() {
     API.getUser(username, password).then(
       function() {
         // send to next page
-        console.log("Yes!")
-        return $.ajax({
-          url: "/item",
-          type: "GET"
-        });
+        console.log("Yes!");
+        // API.loadItemPage();
+        location.assign("/item");
       },
       function(err) {
         console.log("Cry!");

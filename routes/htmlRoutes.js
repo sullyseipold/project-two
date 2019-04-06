@@ -12,10 +12,11 @@ module.exports = function (app) {
   });
 
   // ===== Items ======
-  // View all items
+  //View all items
   app.get("/item", function (req, res) {
+    console.log('inside app.get /item');
     db.Item.findAll({}).then(function (data) {
-      res.render("item", {
+      res.render("search", {
         items: data
       });
     });
