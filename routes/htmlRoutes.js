@@ -2,13 +2,9 @@ var db = require("../models");
 
 module.exports = function (app) {
 
- // ===== Login ===========
+  // ===== Login ===========
   app.get("/", function (req, res) {
-    db.Item.findAll({}).then(function (data) {
-      res.render("index", {
-        items: data
-      });
-    });
+    res.render("index");
   });
 
   // ===== Items ======
@@ -32,7 +28,7 @@ module.exports = function (app) {
     // Create new Item from /allitems body??
     db.Item.create(req.body).then(function (dbItem) {
       console.log('inside create new item route');
-      
+
       res.json(dbItem.id);
     });
   });
@@ -60,13 +56,16 @@ module.exports = function (app) {
       where: {
         id: req.params.id
       }
-    }).then(function (data) {
+    }).then(function(data) {
       res.render("item", {
         item: data
       });
     });
   });
 
+  app.get("/account", function (req, res) {
+    res.render("account");
+  });
   // ===== Users ======
   // Specific user account
   app.get("/account/:id", function (req, res) {

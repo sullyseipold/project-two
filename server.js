@@ -9,6 +9,9 @@ var db = require("./models");
 var app = express();
 // var PORT = process.env.PORT || 3000;
 
+// var firebase = require("firebase");
+// var firebaseui = require("firebaseui");
+
 aws.config.update({
   secretAccessKey: process.env.SECRET_ACCESS_KEY,
   accessKeyId: process.env.ACCESS_KEY_ID,
