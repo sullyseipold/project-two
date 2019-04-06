@@ -21,29 +21,35 @@ $(document).ready(function() {
         url: "api/validate",
         type: "POST",
         data: {
-          user_name: username,
+          username: username,
           password: password
         }
 
       });
     },
 
+
+
   };
 
   // LOGIN FUNCTION
   function userLogin() {
-    var username = $("[name=user_name]").val().trim();
+    var username = $("[name=username]").val().trim();
     var password = $("[name=password]").val().trim();
-    API.getUser(username, password).then(function () {
-      // send to next page
-      console.log("Yes!")
-
-    }, function (err) {
-      console.log("Cry!")
-    });
-  };
-
-
+    API.getUser(username, password).then(
+      function() {
+        // send to next page
+        console.log("Yes!")
+        return $.ajax({
+          url: "/item",
+          type: "GET"
+        });
+      },
+      function(err) {
+        console.log("Cry!");
+      }
+    );
+  }
 
   //----------------------------------------
   // ADDING USERS
@@ -57,7 +63,7 @@ $(document).ready(function() {
     } else {
       var newUser = {
         name: $("#new-name").val().trim(),
-        user_name: $("#new-username").val().trim(),
+        username: $("#new-username").val().trim(),
         email: $("#new-email").val().trim(),
         password: $("#new-password").val().trim(),
         city: $("#new-city").val().trim(),
@@ -76,19 +82,19 @@ $(document).ready(function() {
   $("#new-user-btn").on("click", function (e) {
     e.preventDefault();
     // showModal();
-    $('#new-user-modal').modal('show');
+    $("#new-user-modal").modal("show");
   });
 
   // login with username and password
   $("#submit-btn").on("click", function (e) {
     e.preventDefault();
-    // userLogin();
+    userLogin();
   });
 
   // create a new user 
   $("#create-user-btn").on("click", function (e) {
     e.preventDefault();
-    // newUser();
+    newUser();
     $("#new-user-modal").modal("hide");
   });
 });

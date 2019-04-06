@@ -14,7 +14,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false
     },
     description: DataTypes.STRING,
-    image_url: DataTypes.STRING,
+    imageurl: DataTypes.STRING,
     availability: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
