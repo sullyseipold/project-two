@@ -7,7 +7,7 @@ var aws = require("aws-sdk");
 var db = require("./models");
 
 var app = express();
-var PORT = process.env.PORT || 3000;
+// var PORT = process.env.PORT || 3000;
 
 aws.config.update({
   secretAccessKey: process.env.SECRET_ACCESS_KEY,
@@ -16,9 +16,7 @@ aws.config.update({
 });
 
 // Middleware
-app.use(express.urlencoded({
-  extended: true
-}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
@@ -49,12 +47,12 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function () {
-  app.listen(PORT, function () {
+db.sequelize.sync(syncOptions).then(function() {
+  app.listen(process.env.PORT || 3000, function(){
     console.log(
-      "Listening on port %s. Visit http://localhost:%s/ in your browser.",
-      PORT,
-      PORT
+      "Express server listening on port %d in %s mode",
+      this.address().port,
+      app.settings.env
     );
   });
 });
