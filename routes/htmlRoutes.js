@@ -30,8 +30,10 @@ module.exports = function (app) {
   // Create a new item entry
   app.post("/item", function (req, res) {
     // Create new Item from /allitems body??
-    db.Item.create(req.body).then(function () {
-      res.redirect("/search");
+    db.Item.create(req.body).then(function (dbItem) {
+      console.log('inside create new item route');
+      
+      res.json(dbItem.id);
     });
   });
 
